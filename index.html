@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2c1810">
+  <meta name="description" content="Four literary word games — WordCraft, Unscramble, Fill the Blank, and Word Wise">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LitPlay">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>LitPlay — Literary Word Games</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HOME SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div id="screen-home-inner">
+    <header class="home-header">
+      <span class="quill">🪶</span>
+      <h1 class="logo">LitPlay</h1>
+      <p class="tagline">Where Words Come Alive</p>
+      <div class="home-divider"></div>
+    </header>
+
+    <main class="game-grid">
+
+      <button class="game-card" data-game="wordle">
+        <span class="card-icon">📖</span>
+        <h2>WordCraft</h2>
+        <p>Guess the 5-letter literary word in 6 tries</p>
+        <span class="card-badge hidden" id="badge-wordle"></span>
+      </button>
+
+      <button class="game-card" data-game="anagram">
+        <span class="card-icon">🔤</span>
+        <h2>Unscramble</h2>
+        <p>Rearrange scrambled letters to find the word</p>
+        <span class="card-badge hidden" id="badge-anagram"></span>
+      </button>
+
+      <button class="game-card" data-game="fillblank">
+        <span class="card-icon">✍️</span>
+        <h2>Fill the Blank</h2>
+        <p>Complete a famous quote with the missing word</p>
+        <span class="card-badge hidden" id="badge-fillblank"></span>
+      </button>
+
+      <button class="game-card" data-game="definition">
+        <span class="card-icon">📚</span>
+        <h2>Word Wise</h2>
+        <p>Match literary words to their definitions</p>
+        <span class="card-badge hidden" id="badge-definition"></span>
+      </button>
+
+    </main>
+
+    <footer class="home-footer">
+      <div class="score-wrap">
+        <span class="score-label">Total Score</span>
+        <span class="score-val" id="total-score">0</span>
+      </div>
+      <button id="install-btn" class="install-btn">📲 Install App</button>
+    </footer>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     WORDCRAFT SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-wordle" class="screen">
+  <header class="g-header">
+    <button class="back-btn" data-back title="Back">←</button>
+    <h2>WordCraft</h2>
+    <div class="g-info">
+      <span id="wordle-day">Day 1</span>
+    </div>
+  </header>
+
+  <div class="g-body" style="justify-content:center;">
+    <div id="wordle-board" class="w-board"></div>
+  </div>
+
+  <div id="wordle-keyboard" class="w-keyboard"></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     UNSCRAMBLE SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-anagram" class="screen">
+  <header class="g-header">
+    <button class="back-btn" data-back title="Back">←</button>
+    <h2>Unscramble</h2>
+    <div class="g-info">
+      <span id="ana-lives"></span>
+      <span id="ana-score">⭐ 0</span>
+    </div>
+  </header>
+
+  <div class="g-body" style="justify-content:center; gap:1.1rem;">
+    <span class="cat-tag" id="ana-category">Literary Term</span>
+
+    <div id="ana-scrambled" class="scrambled-word">XXXXX</div>
+
+    <p class="hint-txt" id="ana-hint">Hint will appear here</p>
+
+    <input
+      type="text"
+      id="ana-input"
+      class="ana-input"
+      maxlength="15"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="characters"
+      spellcheck="false"
+      placeholder="Type your answer…"
+    >
+
+    <div class="ana-actions">
+      <button id="ana-submit" class="btn-p">Check ✓</button>
+      <button id="ana-skip"   class="btn-g">Skip →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FILL THE BLANK SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-fillblank" class="screen">
+  <header class="g-header">
+    <button class="back-btn" data-back title="Back">←</button>
+    <h2>Fill the Blank</h2>
+    <div class="g-info">
+      <span id="fb-progress">1/10</span>
+      <span id="fb-score">⭐ 0</span>
+    </div>
+  </header>
+
+  <div class="g-body">
+    <div id="fb-quote" class="quote-card">…</div>
+    <p id="fb-source" class="quote-src"></p>
+
+    <div id="fb-options" class="opts-grid"></div>
+
+    <div id="fb-feedback" class="fb-area hidden">
+      <div id="fb-full" class="full-quote"></div>
+      <button id="fb-next" class="btn-p">Next Quote →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     WORD WISE SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-definition" class="screen">
+  <header class="g-header">
+    <button class="back-btn" data-back title="Back">←</button>
+    <h2>Word Wise</h2>
+    <div class="g-info">
+      <span id="def-progress">1/15</span>
+      <span id="def-score">⭐ 0</span>
+    </div>
+  </header>
+
+  <div class="g-body">
+    <div id="def-word" class="def-word">WORD</div>
+
+    <div id="def-options" class="opts-grid opts-col"></div>
+
+    <div id="def-feedback" class="fb-area hidden">
+      <button id="def-next" class="btn-p">Next Word →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     RESULT MODAL
+═══════════════════════════════════════════ -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div class="modal">
+    <div id="modal-icon"    class="modal-icon">🎉</div>
+    <h2 id="modal-title">Complete!</h2>
+    <p  id="modal-message"></p>
+    <div id="modal-stats" class="modal-stats"></div>
+    <div class="modal-actions">
+      <button id="modal-play-again" class="btn-p">Play Again</button>
+      <button id="modal-home"       class="btn-s">Home</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     INSTALL GUIDE OVERLAY
+═══════════════════════════════════════════ -->
+<div id="install-overlay" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-icon">📲</div>
+    <h2>Install LitPlay</h2>
+    <div id="install-steps" class="install-steps-wrap"></div>
+    <div class="modal-actions" style="margin-top:1.4rem;">
+      <button id="install-close" class="btn-p">Got it!</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts — order matters: data → app → games -->
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="games.js"></script>
+</body>
+</html>
