@@ -27,6 +27,8 @@ function startGame(name) {
   if (name === 'anagram')    AnagramGame.start();
   if (name === 'fillblank')  FillBlankGame.start();
   if (name === 'definition') DefinitionGame.start();
+  if (name === 'authorquiz') AuthorQuizGame.start();
+  if (name === 'firstlines') FirstLinesGame.start();
 }
 
 // ================================================================
@@ -508,6 +510,136 @@ const DefinitionGame = {
         <div class="stat-row"><span>All-Time Score</span><strong>${s.totalScore} pts</strong></div>`,
       onPlayAgain: () => this.start(),
       onHome: () => {}
+    });
+  }
+};
+
+// ================================================================
+//  GAME 5 — WHO WROTE IT? (Author Quiz)
+// ================================================================
+const AuthorQuizGame = {
+  pool: [], idx: 0, score: 0, total: 10, answered: false,
+
+  start() {
+    this.pool = shuffle([...AUTHOR_QUIZ]).slice(0, this.total);
+    this.idx = 0; this.score = 0; this.answered = false;
+    this.render();
+  },
+
+  render() {
+    if (this.idx >= this.pool.length) { this.endGame(); return; }
+    const q = this.pool[this.idx];
+    this.answered = false;
+    document.getElementById('aq-progress').textContent = (this.idx + 1) + '/' + this.total;
+    document.getElementById('aq-score').textContent    = '⭐ ' + this.score;
+    document.getElementById('aq-quote').innerHTML      = '\u201C' + q.quote + '\u201D';
+    document.getElementById('aq-work').textContent     = '';
+    document.getElementById('aq-feedback').classList.add('hidden');
+    const grid = document.getElementById('aq-options');
+    grid.innerHTML = '';
+    shuffle([...q.options]).forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn opt-aq';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => this.pick(opt, btn, q));
+      grid.appendChild(btn);
+    });
+  },
+
+  pick(choice, btn, q) {
+    if (this.answered) return;
+    this.answered = true;
+    const correct = choice === q.author;
+    if (correct) { this.score += 10; btn.classList.add('opt-right'); }
+    else {
+      btn.classList.add('opt-wrong');
+      document.querySelectorAll('.opt-aq').forEach(b => {
+        if (b.textContent === q.author) b.classList.add('opt-right');
+      });
+    }
+    document.getElementById('aq-work').textContent = '📖 ' + q.work;
+    document.getElementById('aq-feedback').classList.remove('hidden');
+    document.getElementById('aq-next').onclick = () => { this.idx++; this.render(); };
+  },
+
+  endGame() {
+    const s = State.scores.authorquiz;
+    s.played++; s.totalScore += this.score; saveScores();
+    const pct = Math.round((this.score / (this.total * 10)) * 100);
+    showModal({
+      icon: pct >= 80 ? '🏆' : pct >= 50 ? '⭐' : '📖',
+      title: 'Who Wrote It? Complete!',
+      message: `You scored ${this.score} out of ${this.total * 10}`,
+      stats: `
+        <div class="stat-row"><span>Correct</span><strong>${this.score / 10} / ${this.total}</strong></div>
+        <div class="stat-row"><span>Accuracy</span><strong>${pct}%</strong></div>
+        <div class="stat-row"><span>All-Time Score</span><strong>${s.totalScore} pts</strong></div>`,
+      onPlayAgain: () => this.start(), onHome: () => {}
+    });
+  }
+};
+
+// ================================================================
+//  GAME 6 — FIRST LINES (Identify the novel)
+// ================================================================
+const FirstLinesGame = {
+  pool: [], idx: 0, score: 0, total: 10, answered: false,
+
+  start() {
+    this.pool = shuffle([...FIRST_LINES]).slice(0, this.total);
+    this.idx = 0; this.score = 0; this.answered = false;
+    this.render();
+  },
+
+  render() {
+    if (this.idx >= this.pool.length) { this.endGame(); return; }
+    const q = this.pool[this.idx];
+    this.answered = false;
+    document.getElementById('fl-progress').textContent = (this.idx + 1) + '/' + this.total;
+    document.getElementById('fl-score').textContent    = '⭐ ' + this.score;
+    document.getElementById('fl-line').innerHTML       = '\u201C' + q.line + '\u201D';
+    document.getElementById('fl-author').textContent   = '';
+    document.getElementById('fl-feedback').classList.add('hidden');
+    const grid = document.getElementById('fl-options');
+    grid.innerHTML = '';
+    shuffle([...q.options]).forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn opt-fl';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => this.pick(opt, btn, q));
+      grid.appendChild(btn);
+    });
+  },
+
+  pick(choice, btn, q) {
+    if (this.answered) return;
+    this.answered = true;
+    const correct = choice === q.title;
+    if (correct) { this.score += 10; btn.classList.add('opt-right'); }
+    else {
+      btn.classList.add('opt-wrong');
+      document.querySelectorAll('.opt-fl').forEach(b => {
+        if (b.textContent === q.title) b.classList.add('opt-right');
+      });
+    }
+    document.getElementById('fl-author').textContent = '✍️  ' + q.author;
+    document.getElementById('fl-feedback').classList.remove('hidden');
+    document.getElementById('fl-next').onclick = () => { this.idx++; this.render(); };
+  },
+
+  endGame() {
+    const s = State.scores.firstlines;
+    s.played++; s.totalScore += this.score; saveScores();
+    const pct = Math.round((this.score / (this.total * 10)) * 100);
+    showModal({
+      icon: pct >= 80 ? '🏆' : pct >= 50 ? '⭐' : '📖',
+      title: 'First Lines Complete!',
+      message: `You scored ${this.score} out of ${this.total * 10}`,
+      stats: `
+        <div class="stat-row"><span>Correct</span><strong>${this.score / 10} / ${this.total}</strong></div>
+        <div class="stat-row"><span>Accuracy</span><strong>${pct}%</strong></div>
+        <div class="stat-row"><span>All-Time Score</span><strong>${s.totalScore} pts</strong></div>`,
+      onPlayAgain: () => this.start(), onHome: () => {}
     });
   }
 };

@@ -11,9 +11,14 @@ const State = {
     wordle:     { played: 0, won: 0, streak: 0, maxStreak: 0 },
     anagram:    { played: 0, totalScore: 0 },
     fillblank:  { played: 0, totalScore: 0 },
-    definition: { played: 0, totalScore: 0 }
+    definition: { played: 0, totalScore: 0 },
+    authorquiz: { played: 0, totalScore: 0 },
+    firstlines: { played: 0, totalScore: 0 }
   }
 };
+// Migrate older saves that lack new game fields
+if (!State.scores.authorquiz) State.scores.authorquiz = { played: 0, totalScore: 0 };
+if (!State.scores.firstlines) State.scores.firstlines = { played: 0, totalScore: 0 };
 
 // ── Persist scores ────────────────────────────────────────────
 function saveScores() {
@@ -42,8 +47,11 @@ function updateHomeBadges() {
   setBadge('badge-anagram',    s.anagram.totalScore    > 0 ? '⭐ ' + s.anagram.totalScore    : '');
   setBadge('badge-fillblank',  s.fillblank.totalScore  > 0 ? '⭐ ' + s.fillblank.totalScore  : '');
   setBadge('badge-definition', s.definition.totalScore > 0 ? '⭐ ' + s.definition.totalScore : '');
+  setBadge('badge-authorquiz', s.authorquiz.totalScore > 0 ? '⭐ ' + s.authorquiz.totalScore : '');
+  setBadge('badge-firstlines', s.firstlines.totalScore > 0 ? '⭐ ' + s.firstlines.totalScore : '');
 
-  const total = s.anagram.totalScore + s.fillblank.totalScore + s.definition.totalScore;
+  const total = s.anagram.totalScore + s.fillblank.totalScore + s.definition.totalScore
+              + s.authorquiz.totalScore + s.firstlines.totalScore;
   const el = document.getElementById('total-score');
   if (el) el.textContent = total;
 }

@@ -396,3 +396,209 @@ const DEFINITIONS = [
     ]
   }
 ];
+
+// ── AUTHOR QUIZ: famous quotes — pick the correct author ─────
+const AUTHOR_QUIZ = [
+  {
+    quote: "The world breaks everyone and afterward many are strong at the broken places.",
+    author: "Ernest Hemingway",
+    options: ["Ernest Hemingway","F. Scott Fitzgerald","John Steinbeck","William Faulkner"],
+    work: "A Farewell to Arms (1929)"
+  },
+  {
+    quote: "I am no bird; and no net ensnares me: I am a free human being with an independent will.",
+    author: "Charlotte Brontë",
+    options: ["Charlotte Brontë","Emily Brontë","Jane Austen","George Eliot"],
+    work: "Jane Eyre (1847)"
+  },
+  {
+    quote: "There is no greater agony than bearing an untold story inside you.",
+    author: "Maya Angelou",
+    options: ["Maya Angelou","Toni Morrison","Zora Neale Hurston","Alice Walker"],
+    work: "I Know Why the Caged Bird Sings (1969)"
+  },
+  {
+    quote: "A woman must have money and a room of her own if she is to write fiction.",
+    author: "Virginia Woolf",
+    options: ["Virginia Woolf","Edith Wharton","George Eliot","Sylvia Plath"],
+    work: "A Room of One's Own (1929)"
+  },
+  {
+    quote: "To live is the rarest thing in the world. Most people exist, that is all.",
+    author: "Oscar Wilde",
+    options: ["Oscar Wilde","George Bernard Shaw","G. K. Chesterton","Samuel Butler"],
+    work: "The Soul of Man Under Socialism (1891)"
+  },
+  {
+    quote: "Pain and suffering are always inevitable for a large intelligence and a deep heart.",
+    author: "Fyodor Dostoevsky",
+    options: ["Fyodor Dostoevsky","Leo Tolstoy","Anton Chekhov","Ivan Turgenev"],
+    work: "Crime and Punishment (1866)"
+  },
+  {
+    quote: "To love another person is to see the face of God.",
+    author: "Victor Hugo",
+    options: ["Victor Hugo","Alexandre Dumas","Gustave Flaubert","Émile Zola"],
+    work: "Les Misérables (1862)"
+  },
+  {
+    quote: "A thing of beauty is a joy forever: its loveliness increases; it will never pass into nothingness.",
+    author: "John Keats",
+    options: ["John Keats","Percy Shelley","Lord Byron","William Wordsworth"],
+    work: "Endymion (1818)"
+  },
+  {
+    quote: "The mind is its own place, and in itself can make a heaven of hell, a hell of heaven.",
+    author: "John Milton",
+    options: ["John Milton","John Donne","Edmund Spenser","Geoffrey Chaucer"],
+    work: "Paradise Lost (1667)"
+  },
+  {
+    quote: "So we beat on, boats against the current, borne back ceaselessly into the past.",
+    author: "F. Scott Fitzgerald",
+    options: ["F. Scott Fitzgerald","Ernest Hemingway","William Faulkner","Edith Wharton"],
+    work: "The Great Gatsby (1925)"
+  },
+  {
+    quote: "All that is gold does not glitter, not all those who wander are lost.",
+    author: "J. R. R. Tolkien",
+    options: ["J. R. R. Tolkien","C. S. Lewis","George R. R. Martin","Terry Pratchett"],
+    work: "The Fellowship of the Ring (1954)"
+  },
+  {
+    quote: "Reader, I married him.",
+    author: "Charlotte Brontë",
+    options: ["Charlotte Brontë","George Eliot","Thomas Hardy","Elizabeth Gaskell"],
+    work: "Jane Eyre (1847)"
+  },
+  {
+    quote: "It does not matter how slowly you go as long as you do not stop.",
+    author: "Confucius",
+    options: ["Confucius","Lao Tzu","Sun Tzu","Mencius"],
+    work: "Analects"
+  },
+  {
+    quote: "The only true wisdom is in knowing you know nothing.",
+    author: "Socrates",
+    options: ["Socrates","Plato","Aristotle","Epicurus"],
+    work: "As recorded by Plato"
+  },
+  {
+    quote: "All animals are equal, but some animals are more equal than others.",
+    author: "George Orwell",
+    options: ["George Orwell","Aldous Huxley","H. G. Wells","Franz Kafka"],
+    work: "Animal Farm (1945)"
+  },
+  {
+    quote: "It was the best of times, it was the worst of times.",
+    author: "Charles Dickens",
+    options: ["Charles Dickens","Victor Hugo","Leo Tolstoy","Thomas Hardy"],
+    work: "A Tale of Two Cities (1859)"
+  },
+  {
+    quote: "One must always be careful of books, and what is inside them, for words have the power to change us.",
+    author: "Cassandra Clare",
+    options: ["Cassandra Clare","Leigh Bardugo","Sarah J. Maas","Holly Black"],
+    work: "City of Bones (2007)"
+  },
+  {
+    quote: "Not all those who wander are lost.",
+    author: "J. R. R. Tolkien",
+    options: ["J. R. R. Tolkien","C. S. Lewis","Ursula K. Le Guin","Philip Pullman"],
+    work: "The Fellowship of the Ring (1954)"
+  }
+];
+
+// ── FIRST LINES: identify the novel from its opening sentence ─
+const FIRST_LINES = [
+  {
+    line: "It was a bright cold day in April, and the clocks were striking thirteen.",
+    title: "Nineteen Eighty-Four",
+    author: "George Orwell",
+    options: ["Nineteen Eighty-Four","Brave New World","Fahrenheit 451","The Handmaid's Tale"]
+  },
+  {
+    line: "Call me Ishmael.",
+    title: "Moby-Dick",
+    author: "Herman Melville",
+    options: ["Moby-Dick","The Scarlet Letter","Robinson Crusoe","Billy Budd"]
+  },
+  {
+    line: "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness.",
+    title: "A Tale of Two Cities",
+    author: "Charles Dickens",
+    options: ["A Tale of Two Cities","Great Expectations","Oliver Twist","Bleak House"]
+  },
+  {
+    line: "Happy families are all alike; every unhappy family is unhappy in its own way.",
+    title: "Anna Karenina",
+    author: "Leo Tolstoy",
+    options: ["Anna Karenina","War and Peace","The Brothers Karamazov","Crime and Punishment"]
+  },
+  {
+    line: "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+    title: "Pride and Prejudice",
+    author: "Jane Austen",
+    options: ["Pride and Prejudice","Sense and Sensibility","Emma","Persuasion"]
+  },
+  {
+    line: "As Gregor Samsa awoke one morning from uneasy dreams he found himself transformed in his bed into a gigantic insect.",
+    title: "The Metamorphosis",
+    author: "Franz Kafka",
+    options: ["The Metamorphosis","The Trial","The Castle","In the Penal Colony"]
+  },
+  {
+    line: "Many years later, as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice.",
+    title: "One Hundred Years of Solitude",
+    author: "Gabriel García Márquez",
+    options: ["One Hundred Years of Solitude","Love in the Time of Cholera","The Autumn of the Patriarch","Chronicle of a Death Foretold"]
+  },
+  {
+    line: "Mrs. Dalloway said she would buy the flowers herself.",
+    title: "Mrs. Dalloway",
+    author: "Virginia Woolf",
+    options: ["Mrs. Dalloway","To the Lighthouse","Orlando","The Waves"]
+  },
+  {
+    line: "If you really want to hear about it, the first thing you'll probably want to know is where I was born, and what my lousy childhood was like.",
+    title: "The Catcher in the Rye",
+    author: "J. D. Salinger",
+    options: ["The Catcher in the Rye","Franny and Zooey","The Bell Jar","A Separate Peace"]
+  },
+  {
+    line: "It was love at first sight. The first time Yossarian saw the chaplain he fell madly in love with him.",
+    title: "Catch-22",
+    author: "Joseph Heller",
+    options: ["Catch-22","Slaughterhouse-Five","The Naked and the Dead","A Farewell to Arms"]
+  },
+  {
+    line: "All this happened, more or less.",
+    title: "Slaughterhouse-Five",
+    author: "Kurt Vonnegut",
+    options: ["Slaughterhouse-Five","Cat's Cradle","Breakfast of Champions","Mother Night"]
+  },
+  {
+    line: "I am an invisible man.",
+    title: "Invisible Man",
+    author: "Ralph Ellison",
+    options: ["Invisible Man","Native Son","The Color Purple","Go Tell It on the Mountain"]
+  },
+  {
+    line: "In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.",
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    options: ["The Great Gatsby","This Side of Paradise","Tender Is the Night","The Beautiful and Damned"]
+  },
+  {
+    line: "Lolita, light of my life, fire of my loins.",
+    title: "Lolita",
+    author: "Vladimir Nabokov",
+    options: ["Lolita","Pale Fire","Ada or Ardor","The Gift"]
+  },
+  {
+    line: "All children, except one, grow up.",
+    title: "Peter Pan",
+    author: "J. M. Barrie",
+    options: ["Peter Pan","Alice in Wonderland","The Jungle Book","The Wind in the Willows"]
+  }
+];

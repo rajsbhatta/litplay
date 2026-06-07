@@ -59,6 +59,20 @@
         <span class="card-badge hidden" id="badge-definition"></span>
       </button>
 
+      <button class="game-card" data-game="authorquiz">
+        <span class="card-icon">🖋️</span>
+        <h2>Who Wrote It?</h2>
+        <p>Identify the author of a famous literary quote</p>
+        <span class="card-badge hidden" id="badge-authorquiz"></span>
+      </button>
+
+      <button class="game-card" data-game="firstlines">
+        <span class="card-icon">📜</span>
+        <h2>First Lines</h2>
+        <p>Name the novel from its famous opening sentence</p>
+        <span class="card-badge hidden" id="badge-firstlines"></span>
+      </button>
+
     </main>
 
     <footer class="home-footer">
@@ -196,6 +210,54 @@
     <div class="modal-actions">
       <button id="modal-play-again" class="btn-p">Play Again</button>
       <button id="modal-home"       class="btn-s">Home</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     WHO WROTE IT? SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-authorquiz" class="screen">
+  <header class="g-header">
+    <button class="back-btn" data-back title="Back">←</button>
+    <h2>Who Wrote It?</h2>
+    <div class="g-info">
+      <span id="aq-progress">1/10</span>
+      <span id="aq-score">⭐ 0</span>
+    </div>
+  </header>
+  <div class="g-body">
+    <p class="game-prompt">Who is the author of this quote?</p>
+    <div id="aq-quote" class="quote-card">…</div>
+    <div id="aq-options" class="opts-grid opts-col"></div>
+    <div id="aq-feedback" class="fb-area hidden">
+      <div id="aq-work" class="full-quote"></div>
+      <button id="aq-next" class="btn-p">Next Quote →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FIRST LINES SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-firstlines" class="screen">
+  <header class="g-header">
+    <button class="back-btn" data-back title="Back">←</button>
+    <h2>First Lines</h2>
+    <div class="g-info">
+      <span id="fl-progress">1/10</span>
+      <span id="fl-score">⭐ 0</span>
+    </div>
+  </header>
+  <div class="g-body">
+    <p class="game-prompt">Which novel begins with this line?</p>
+    <div id="fl-line" class="quote-card">…</div>
+    <div id="fl-options" class="opts-grid opts-col"></div>
+    <div id="fl-feedback" class="fb-area hidden">
+      <div id="fl-author" class="full-quote"></div>
+      <button id="fl-next" class="btn-p">Next Line →</button>
     </div>
   </div>
 </div>
